@@ -1,0 +1,316 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap");
+
+$abu: #d9e4dd;
+$hitam: #555555;
+$shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px;
+$biru: #316b83;
+$ubah: #000d6b;
+$tablet: 830px;
+$android: 710px;
+
+@mixin display($a: row, $b: center) {
+  display: flex;
+  align-items: center;
+  flex-direction: $a;
+  justify-content: $b;
+}
+
+@mixin judul {
+  padding: 5px auto;
+  border: 4px solid;
+  width: 170px;
+  margin: auto;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+nav {
+  position: fixed;
+  width: 100%;
+  padding: 10px 50px;
+  background-color: $abu;
+  color: $hitam;
+  box-shadow: $shadow;
+
+  @include display(row, space-between);
+  .right {
+    width: 50%;
+    ul {
+      @include display(row, space-evenly);
+      list-style: none;
+      li {
+        cursor: pointer;
+        a {
+          color: $hitam;
+          text-decoration: none;
+          &:hover {
+            color: $ubah;
+          }
+        }
+      }
+      .kontak {
+        padding: 3px 10px;
+        border: 2px solid $hitam;
+        border-radius: 50px;
+        &:hover {
+          border-color: $ubah;
+        }
+      }
+    }
+  }
+}
+
+.container {
+  width: 100%;
+
+  &-welcome {
+    @include display(row, center);
+    background-color: $abu;
+    padding: 90px 100px;
+    .left {
+      width: 50%;
+      height: 100%;
+
+      p {
+        color: grey;
+        font-weight: 300;
+        font-family: "IBM Plex Mono", monospace;
+      }
+
+      &-kotak {
+        width: 200px;
+        padding: 40px 0;
+        @include display(row, space-between);
+        .kotak {
+          height: 40px;
+          width: 40px;
+          background-color: $abu;
+          padding: 5px;
+          border-radius: 5px;
+          box-shadow: $shadow;
+          cursor: pointer;
+          img {
+            height: 30px;
+            width: 30px;
+          }
+        }
+      }
+    }
+    .right {
+      width: 50%;
+      height: 100%;
+      img {
+        height: 400px;
+        width: 400px;
+        border-radius: 100%;
+        box-shadow: $shadow;
+      }
+    }
+  }
+
+  &-about {
+    padding: 100px 50px;
+    text-align: center;
+    h2 {
+      @include judul();
+    }
+    p {
+      padding: 30px;
+      letter-spacing: 1px;
+      line-height: 2;
+    }
+  }
+
+  &-skills {
+    @include display(column, space-evenly);
+    text-align: center;
+    padding-bottom: 100px;
+    h2 {
+      @include judul();
+    }
+    .list-skill {
+      display: grid;
+      grid-template-columns: auto auto auto auto auto;
+      margin-bottom: 30px;
+      .skill {
+        @include display(column, center);
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+        box-shadow: $shadow;
+        margin: 20px;
+        cursor: pointer;
+        color: $hitam;
+        font-weight: bold;
+        img {
+          width: 50px;
+          height: 50px;
+        }
+        &:hover {
+          img {
+            transform: rotate(360deg);
+            transition: all 0.5s;
+          }
+        }
+      }
+    }
+  }
+
+  &-projects {
+    @include display(column, space-evenly);
+    text-align: center;
+    padding-bottom: 100px;
+    h2 {
+      @include judul();
+    }
+    .project {
+      margin-top: 40px;
+      width: 600px;
+      box-shadow: $shadow;
+      padding: 15px 15px 15px 5px;
+      color: $hitam;
+      border-radius: 3px;
+      @include display(row, space-between);
+
+      .desc {
+        text-align: left;
+        margin-left: 10px;
+      }
+
+      h3 {
+        color: $biru;
+      }
+
+      p {
+        margin: 5px auto 20px auto;
+      }
+
+      a {
+        text-decoration: none;
+        color: $biru;
+        font-weight: bold;
+        &:hover {
+          color: $ubah;
+        }
+      }
+    }
+  }
+
+  &-contact {
+    text-align: center;
+    padding: 50px;
+    h2 {
+      @include judul();
+    }
+  }
+}
+
+footer {
+  width: 100%;
+  background-color: rgb(23, 28, 43);
+  padding: 15px 30px;
+  color: white;
+  text-align: center;
+
+  p {
+    letter-spacing: 1px;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  a {
+    text-decoration: none;
+    color: $biru;
+    font-size: 16px;
+    &:hover {
+      color: $abu;
+    }
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .container {
+    &-welcome {
+      padding: 90px 20px;
+      .right {
+        img {
+          height: 300px;
+          width: 300px;
+        }
+      }
+    }
+
+    &-skills {
+      .list-skill {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+      }
+    }
+
+    &-projects {
+      .project {
+        width: 500px;
+      }
+    }
+  }
+
+  nav {
+    .right {
+      width: 70%;
+    }
+  }
+}
+
+@media screen and (max-width: $android) {
+  nav {
+    .left {
+      display: none;
+    }
+    .right {
+      width: 200%;
+    }
+  }
+  .container {
+    &-welcome {
+      width: 100%;
+      padding: 90px 20px;
+      @include display(column, space-evenly);
+      .left {
+        width: 100%;
+        padding: 20px;
+      }
+      .right {
+        img {
+          height: 300px;
+          width: 300px;
+        }
+      }
+    }
+
+    &-skills {
+      .list-skill {
+        display: grid;
+        grid-template-columns: auto auto auto;
+      }
+    }
+
+    &-projects {
+      .project {
+        width: 400px;
+      }
+    }
+  }
+}
